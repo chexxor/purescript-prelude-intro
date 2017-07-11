@@ -25,14 +25,25 @@ and you might be limited in other operations you can add, but it's not a big dea
 
 ### Basic Examples
 
-Integers are a Semigroup, having the addition operation being the binary operation
+Integers are a Semigroup, having the addition or multiplication operation being the binary operation.
 
 a + b = c, where a, b, and c are elements of Integer
 a * b = c, where a, b, and c are elements of Integer
 
-Functions are a Semigroup, having the compose operation being the binary operation
+Functions are a Semigroup if the domain is Semigroup.
 
-(b -> c) <<< (a -> b) = (a -> c)
+``` purescript
+(f <> g) x == f x <> g x
+where
+  f :: Semigroup b => a -> b
+  g :: Semigroup b => a -> b
+```
+
+Set of Functions on one type are a Semigroup, having the compose operation being the binary operation. That is, endomorphisms are a semigroup under the compose operation.
+
+``` purescript
+Endo (a -> a) <> Endo (a -> a) == (a -> a) <<< (a -> a)
+```
 
 ``` purescript
 data FruitState = Seed | Tree | Apple
@@ -48,9 +59,8 @@ magic Apple = Tree
 magic Tree = Seed
 
 c :: FruitState -> FruitState
-c = magic <<< time
+c = Endo magic <> Endo time
 ```
-
 
 ### Useful Examples in PureScript Libraries
 
