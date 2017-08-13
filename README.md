@@ -18,6 +18,12 @@
   - Data.Semigroup
 
 1.
+  - Data.HeytingAlgebra
+  - Data.Boolean
+  - Data.BooleanAlgebra
+  - Data.Show (purescript-formatters)
+
+1.
   - Control.Semigroupoid
   - Control.Category
   - Data.Function
@@ -32,12 +38,6 @@
   - Data.CommutativeRing
   - Data.EuclideanRing
   - Data.Field
-
-1.
-  - Data.HeytingAlgebra
-  - Data.Boolean
-  - Data.BooleanAlgebra
-  - Data.Show
 
 1.
   - Control.Apply
