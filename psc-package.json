@@ -3,6 +3,9 @@
     "set": "psc-0.11.5",
     "source": "https://github.com/purescript/package-sets.git",
     "depends": [
+        "debug",
+        "sets",
+        "machines",
         "datetime",
         "css",
         "argonaut-core",

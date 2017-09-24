@@ -43,6 +43,7 @@ Boolean algebra laws:
 
 When your types can be considered as being true or false values and you need to need to perform logical comparisons.
 
+
 ### Basic Examples
 
 
