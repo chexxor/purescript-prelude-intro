@@ -49,17 +49,6 @@ forall a. Show a => a -> Number
 [purescript/purescript-prelude > Control.Category](https://github.com/purescript/purescript-prelude/blob/2abee52437d4199e2748cd36f7c8a29ec307040b/src/Control/Category.purs)
 
 
-#### Op
-
-``` purescript
-> Op (g :: b -> a) <<< Op (f :: c -> b)
-Op (h :: c -> a)
--- to do
-```
-
-[purescript/purescript-contravariant > Data.Op](https://github.com/purescript/purescript-contravariant/blob/836e2ca55940dff4cac0e16d93465622712c78e3/src/Data/Op.purs)
-
-
 #### Star
 
 ``` purescript
