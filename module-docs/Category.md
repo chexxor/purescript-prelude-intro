@@ -1,12 +1,17 @@
 ## Category
 
-The Category typeclass adds the "category" concept to PureScript types, which comes from the study of [category theory](https://en.wikipedia.org/wiki/Category_theory). We'll summarize the idea here, but there is much literature on this topic to gain a deeper understanding of the theory and its applications.
+The Category typeclass adds the "category" concept to PureScript types, which comes from the study of [category theory](https://en.wikipedia.org/wiki/Category_theory). We will simply summarize the idea here, but there is much literature on this topic to consume to gain a deeper understanding of its theory and applications.
 
-Saunders Mac Lane introduces it, "Category theory starts with the observation that many properties of mathematical systems can be unified and simplified by a presentation with diagrams of arrows", in his book "Categories for the Working Mathematician". For example, if we want to use categories to talk about sets, each arrow represents a function from X to Y which assigns all values of set X to another set Y. But a category doesn't specify *what* the arrows are between, so we can use the same theory to talk about arrows between matrices, ordinal numbers, groups, topological spaces, or types in a programming language.
+> "Category theory starts with the observation that many properties of mathematical systems can be unified and simplified by a presentation with diagrams of arrows"
+> -- Saunders Mac Lane, in his book "Categories for the Working Mathematician"
 
-People find category theory interesting because it has defined axioms which allow us to replace connected arrows with a single equivalent arrow, called "composition". For example, if we have arrow from X to Y and an arrow from Y to Z, we can compose them to create an arrow directly from X to Z.
+People find category theory interesting because its axioms allow us to replace connected arrows with a single equivalent arrow, called "composition". For example, if we have arrow from X to Y and an arrow from Y to Z, we can compose them to create a new arrow directly from X to Z.
 
-Category laws:
+Category, the concept, can be used to describe many things, as a category doesn't specify *what* the arrows are between. We can use it to talk about arrows between matrices, ordinal numbers, groups, topological spaces, or types in a programming language. If we use it to describe simple PureScript types, for example, each arrow represents a function from type X to type Y, which assigns all values of X to Y.
+
+In addition to arrows, category theory requires an "identity arrow" to exist for each start and end point of an arrow. While it can be easy to intuit that this identity function can be useful, it isn't easy to demonstrate to newcomers its necessity - it's simply an essential part of a category. One explanation of its necessity is that it enables concisely defining some things, such as isomorphism.
+
+#### Laws:
 
 A PureScript type is a Category if it acts as an arrow/morphism from `a` to `b` such that two of them can be composed associatively, and has a unique identity morphism, `id`, that doesn't change a morphism when composed. Formally described:
 
