@@ -35,10 +35,13 @@ When your type behaves like a category theory arrow and you want to compose them
 ``` purescript
 > :t show
 forall a. Show a => a -> String
+
 > :t readFloat
 String -> Number
+
 > :t readFloat <<< show
 forall a. Show a => a -> Number
+
 > (readFloat <<< show) 5
 5.0
 ```
@@ -57,21 +60,41 @@ Op (h :: c -> a)
 [purescript/purescript-contravariant > Data.Op](https://github.com/purescript/purescript-contravariant/blob/836e2ca55940dff4cac0e16d93465622712c78e3/src/Data/Op.purs)
 
 
-#### Leibniz
-
-``` purescript
--- newtype Leibniz a b = Leibniz (forall f. f a -> f b)
--- to do
-```
-
-[paf31/purescript-leibniz > Data.Leibniz](https://github.com/paf31/purescript-leibniz/blob/master/src/Data/Leibniz.purs)
-
-
 #### Star
 
 ``` purescript
-> Star (g :: b -> f c) <<< Star (f :: a -> f b)
--- to do
+-- Some simple functions
+addOne :: Int -> Int
+addOne i = i + 1
+
+mulFive :: Int -> Int
+mulFive i = i * 5
+
+-- Suppose we wanted to log their effects for debugging
+logify :: forall a b. String -> (a -> b) -> (a -> Tuple String b)
+logify fnName f = \a -> Tuple (msg a) (f a)
+  where msg a = "(" <> fnName <> ":" <> unsafeStringify (f a) <> ")"
+
+addOne' :: Int -> Tuple String Int
+addOne' = logify "addOne" addOne
+
+mulFive' :: Int -> Tuple String Int
+mulFive' = logify "mulFive" mulFive
+
+-- We can compose the simple functions
+f :: Int -> Int
+f = mulFive <<< addOne
+
+-- But we can't compose the logified ones, because the output isn't the same as the input
+--fail = mulFive' <<< addOne'
+
+-- We *can* compose them in Star category.
+-- A function can be composed like a Star if it is type `a -> f b`, where `f` is a Monad
+-- `Tuple a` is a Monad if `a` is a Semigroup like String
+g :: Int -> Tuple String Int
+g = unwrap $ (Star mulFive') <<< (Star addOne')
+-- > f 4
+-- (Tuple "(addOne:5)(mulFive:25)" 25)
 ```
 
 [purescript/purescript-profunctor > Date.Profunctor.Star](https://github.com/purescript/purescript-profunctor/blob/v3.1.0/src/Data/Profunctor/Star.purs#L24-L24)

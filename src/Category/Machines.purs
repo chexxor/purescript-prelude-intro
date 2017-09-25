@@ -1,4 +1,4 @@
-module Test where
+module Category.Machines where
 
 import Prelude
 
@@ -12,7 +12,7 @@ import Data.Monoid (mempty)
 import Data.Newtype (unwrap)
 import Data.Profunctor (dimap)
 import Data.Set (Set, insert, member)
-import Debug.Trace (trace, traceAny)
+import Debug.Trace (traceAny)
 
 data Person = MrA | MrsB
 derive instance eqPerson :: Eq Person
@@ -66,8 +66,8 @@ traceStepOutput = case _ of
   Emit a m -> traceAny a \_ -> m
   Halt -> traceAny "halted" \_ -> halt
 
-main :: forall eff. Eff (console :: CONSOLE | eff) Unit
-main = runIdentity $ flip evalStateT initialMemory
+main1 :: forall eff. Eff (console :: CONSOLE | eff) Unit
+main1 = runIdentity $ flip evalStateT initialMemory
       $ runMealy $ dimap f g (mealy stepFn)
   where
     f :: Unit -> MyAction
