@@ -3,7 +3,7 @@
 The Category typeclass adds the "category" concept to PureScript types, which comes from the study of [category theory](https://en.wikipedia.org/wiki/Category_theory). We will simply summarize the idea here, but there is much literature on this topic to consume to gain a deeper understanding of its theory and applications.
 
 > "Category theory starts with the observation that many properties of mathematical systems can be unified and simplified by a presentation with diagrams of arrows"
-> -- Saunders Mac Lane, in his book "Categories for the Working Mathematician"
+> <br>-- Saunders Mac Lane, in his book "Categories for the Working Mathematician"
 
 People find category theory interesting because its axioms allow us to replace connected arrows with a single equivalent arrow, called "composition". For example, if we have arrow from X to Y and an arrow from Y to Z, we can compose them to create a new arrow directly from X to Z.
 
@@ -13,14 +13,14 @@ In addition to arrows, category theory requires an "identity arrow" to exist for
 
 #### Laws:
 
-A PureScript type is a Category if it acts as an arrow/morphism from `a` to `b` such that two of them can be composed associatively, and has a unique identity morphism, `id`, that doesn't change a morphism when composed. Formally described:
+A PureScript type is a Category if it acts as an arrow from `a` to `b` such that two of them can be composed associatively, and has a unique identity arrow, `id`, that doesn't change an arrow when composed. Formally described:
 
 - Composes Associativity:
-  - Given arrows/morphisms `f :: a → b`, `g :: b → c`, and `h :: c → d`
-    they compose associatively `h <<< (g <<< f) = (h <<< g) <<< f`
+  - Given arrows `f :: a → b`, `g :: b → c`, and `h :: c → d`
+    <br>they compose associatively `h <<< (g <<< f) = (h <<< g) <<< f`
 - Identity:
-  - Has an identity morphism, `id`, which doesn't change another morphism when composed
-    `id <<< p = p <<< id = p`
+  - Has an identity arrow, `id`, which doesn't change another morphism when composed
+    <br>`id <<< p = p <<< id = p`
 
 
 ### When to Reach for it
